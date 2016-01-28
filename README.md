@@ -1,6 +1,9 @@
 # EternalSunshine
 Incremental clicker game / React+Redux experiment
 
+# Demo
+http://ggulati.github.io/EternalSunshine/
+
 # Setup
 Prereqs: node / npm
 
@@ -12,4 +15,4 @@ Run ```npm run build``` to build the project.
 
 Use ```npm run deploy``` to create the optimized production version of the webpage. Note that the script goes to deploy/ and not bin/.
 
-Open index.html in a browser.
+Then, open index.html in a browser.
