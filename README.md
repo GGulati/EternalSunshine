@@ -1,11 +1,17 @@
 # EternalSunshine
-Incremental clicker game / React experiment
+Incremental clicker game / React+Redux experiment
 
 # Setup
 Prereqs: node / npm
-`npm i` to install dependencies
-You'll also need webpack - `npm i -g webpack` to install it globally
+
+Install all dependencies with:
+`npm i`
+
+You'll also need webpack.
+Install it globally with:
+`npm i -g webpack`
 
 # Build & Run
 Run `webpack` to build
+
 Open index.html in a browser
