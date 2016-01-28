@@ -4,11 +4,10 @@ var RBS = require('react-bootstrap');
 var RR = require('react-redux');
 
 var Actions = require('../Actions/actions.js');
-
-import { gameDefinition } from '../gameDefinition.js';
+var GameModel = require('../gameModel.js');
 
 const AchievementsContainer = props => {
-	const { dispatch, Achievements } = props;
+	const { dispatch, achievements } = props;
 
 	return (
 		<div className="es-achievements">

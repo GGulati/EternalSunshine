@@ -4,12 +4,11 @@ var RBS = require('react-bootstrap');
 var RR = require('react-redux');
 
 var Actions = require('../Actions/actions.js');
-
-import { gameDefinition } from '../gameDefinition.js';
+var GameModel = require('../gameModel.js');
 
 const Resource = props => {
-	let displayName = gameDefinition.getIn(['resources', props.name, 'name']);
-	let displaySuffix = gameDefinition.getIn(['resources', props.name, 'suffix']);
+	let displayName = GameModel.GameDefinition.getIn(['resources', props.name, 'name']);
+	let displaySuffix = GameModel.GameDefinition.getIn(['resources', props.name, 'suffix']);
 
 	return (
 		<div>{props.qty} {displayName + (props.qty != 1 ? displaySuffix : '')}</div>

@@ -4,8 +4,7 @@ var RBS = require('react-bootstrap');
 var RR = require('react-redux');
 
 var Actions = require('../Actions/actions.js');
-
-import { gameDefinition } from '../gameDefinition.js';
+var GameModel = require('../gameModel.js');
 
 const UpgradesContainer = props => {
 	const { dispatch, upgrades } = props;

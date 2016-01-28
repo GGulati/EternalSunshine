@@ -8,7 +8,7 @@ Install all dependencies with:
 ```npm i```
 
 # Build & Run
-Run ```npm run dev``` to run the webpack dev server, which continuously recompiles your code
+Run ```npm run build``` to build the project
 Use ```npm run deploy``` to create the optimized production scripts
 
 Open index.html in a browser

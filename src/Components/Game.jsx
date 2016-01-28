@@ -8,16 +8,16 @@ var Resources = require('./Resources.jsx');
 var Assets = require('./Assets.jsx');
 var Upgrades = require('./Upgrades.jsx');
 var Achievements = require('./Achievements.jsx');
+var Messages = require('./Messages.jsx');
 
 var Actions = require('../Actions/actions.js');
-
-import { TICK_INTERVAL } from '../gameDefinition.js';
+var GameModel = require('../gameModel.js');
 
 const Game = React.createClass({
 	mixins: [TimerMixin],
 
 	componentDidMount: function() {
-		this.setInterval(() => this.props.dispatch(Actions.tickTimer()), TICK_INTERVAL);
+		this.setInterval(() => this.props.dispatch(Actions.tickTimer()), GameModel.TICK_INTERVAL);
 	},
 
 	render: function() {
@@ -25,6 +25,7 @@ const Game = React.createClass({
 		  <div className="es-game">
 		  	<RBS.Panel>
 		    	<Resources.Resources />
+		    	<Messages.Messages />
 				</RBS.Panel>
 		  	<RBS.Tabs position="left" tabWidth={3}>
 			    <RBS.Tab eventKey={1} title="Illuminators">
