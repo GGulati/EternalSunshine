@@ -8,7 +8,8 @@ Install all dependencies with:
 ```npm i```
 
 # Build & Run
-Run ```npm run build``` to build the project
-Use ```npm run deploy``` to create the optimized production version of the webpage. Note that the script goes to deploy/ and not bin/, so you'll have to change index.html accordingly
+Run ```npm run build``` to build the project.
 
-Open index.html in a browser
+Use ```npm run deploy``` to create the optimized production version of the webpage. Note that the script goes to deploy/ and not bin/.
+
+Open index.html in a browser.
