@@ -9,6 +9,6 @@ Install all dependencies with:
 
 # Build & Run
 Run ```npm run build``` to build the project
-Use ```npm run deploy``` to create the optimized production scripts on Linux and ```npm run win-deploy``` if you are on Windows (this does not affect the output; it simply changes the shell commands used)
+Use ```npm run deploy``` to create the optimized production version of the webpage. Note that the script goes to deploy/ and not bin/, so you'll have to change index.html accordingly
 
 Open index.html in a browser
