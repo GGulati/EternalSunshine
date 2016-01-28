@@ -120,7 +120,7 @@ const createMessage = (type, context, details, duration=5) => Immutable.Map({
 	duration: duration,
 });
 
-const canPostMessage = (messages, type, context) => {
+const isLastMessageSimilar = (messages, type, context) => {
 	if (messages.isEmpty()) {
 		return true;
 	}
@@ -128,13 +128,12 @@ const canPostMessage = (messages, type, context) => {
 	const recent = messages.first();
 	const sameType = recent.get('type') === type;
 	const sameContext = recent.get('context').isSuperset(context);
-	return !(sameType && sameContext);
+	return sameType && sameContext;
 }
 
 export const tryAddMessage = (messages, type, context, details) => {
-	if (canPostMessage(messages, type, context)) {
-		return messages.push(createMessage(type, context, details));
-	} else {
-		return messages;
+	if (isLastMessageSimilar(messages, type, context)) {
+		messages = messages.pop(); // replace it with the "updated" message
 	}
+	return messages.push(createMessage(type, context, details));
 };

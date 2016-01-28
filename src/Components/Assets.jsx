@@ -20,7 +20,7 @@ const Asset = props => {
 	const productivity = GameModel.GameDefinition.getIn(['assets', props.name, 'productivity']);
 	const productivity_displayed = GameModel.resourcesToString(productivity);
 
-	const title = <h4>{displayName}{displaySuffix} <small>{props.qty}</small></h4>;
+	const title = <h4>{displayName}{displaySuffix}: <small>{props.qty}</small></h4>;
 
 	return (
 		<RBS.Panel className="es-asset" header={title}>

@@ -43,7 +43,7 @@ const buyAsset = (state, action) => {
 	
 	// check if we have enough resources
 	const cost = GameModel.GameDefinition.getIn(['assets', action.assetName, 'cost']);
-	const satisfies = cost.map((qty, resName) => res.get(resName) >= qty, cost);
+	const satisfies = cost.map((qty, resName) => res.get(resName) >= qty);
 
 	if (satisfies.every(x => !!x)) { // can afford
 		res = res.mergeDeepWith((inv, cost) => inv - cost, cost);
@@ -56,7 +56,7 @@ const buyAsset = (state, action) => {
 		const displaySuffix = GameModel.GameDefinition.getIn(['assets', action.assetName, 'suffix']);
 
 		const needed_res = cost
-			.mergeDeepWith((a, b) => a - b, res)
+			.map((qty, resName) => qty - res.get(resName))
 			.filter(x => x > 0);
 
 		return updated

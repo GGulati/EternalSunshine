@@ -27,7 +27,7 @@
   "devDependencies": {},
   "scripts": {
     "build": "webpack",
-    "deploy": "webpack -p --config webpack-deploy.config.js",
+    "deploy": "webpack -p --config webpack-deploy.config.js"
   },
   "repository": {
     "type": "git",
