@@ -21,26 +21,25 @@ const Game = React.createClass({
 	},
 
 	render: function() {
-		const { dispatch, gamestate } = this.props;
 		return (
 		  <div className="es-game">
 		  	<RBS.Panel>
-		    	<Resources.ResourcesRenderer gamestate={gamestate} dispatch={dispatch} />
+		    	<Resources.Resources />
 				</RBS.Panel>
 		  	<RBS.Tabs position="left" tabWidth={3}>
 			    <RBS.Tab eventKey={1} title="Illuminators">
 			    	<RBS.Panel>
-			    		<Assets.AssetsRenderer gamestate={gamestate} dispatch={dispatch} />
+			    		<Assets.Assets />
 		    		</RBS.Panel>
 			    </RBS.Tab>
 			    <RBS.Tab eventKey={2} title="Upgrades">
 			    	<RBS.Panel>
-			   	 		<Upgrades.UpgradesRenderer gamestate={gamestate} dispatch={dispatch} />
+			   	 		<Upgrades.Upgrades />
 		    		</RBS.Panel>
 			    </RBS.Tab>
 			    <RBS.Tab eventKey={3} title="Achievements">
 			    	<RBS.Panel>
-			   	 		<Achievements.AchievementsRenderer gamestate={gamestate} dispatch={dispatch} />
+			   	 		<Achievements.Achievements />
 		    		</RBS.Panel>
 			    </RBS.Tab>
 		  	</RBS.Tabs>

@@ -2,13 +2,13 @@ module.exports = {
   entry: "./src/index.jsx",
   output: {
     path: __dirname + '/bin',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style!css'
+        loader: 'style!css',
       },
       {
         test: /\.jsx?$/,
@@ -16,9 +16,9 @@ module.exports = {
         loader: 'babel',
         query: {
           cacheDirectory: true,
-          presets: ['react', 'es2015']
-        }
-      }
-    ]
-  }
+          presets: ['react', 'es2015'],
+        },
+      },
+    ],
+  },
 };

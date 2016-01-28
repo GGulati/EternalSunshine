@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
 var RBS = require('react-bootstrap');
+var RR = require('react-redux');
 
 var Actions = require('../Actions/actions.js');
 
@@ -18,17 +18,22 @@ const Asset = props => {
 	);
 };
 
-export const AssetsRenderer = props => {
-	const { dispatch, gamestate } = props;
+const AssetsContainer = props => {
+	const { dispatch, assets } = props;
 
 	return (
 		<div className="es-assets">
 			<h3>Assets <small>Placeholder</small></h3>
 			{
-				gamestate.get('assets').entrySeq().map(
+				assets.entrySeq().map(
 					entry => <Asset key={entry[0]} name={entry[0]} qty={entry[1]} />
 				).toJS()
 			}
 		</div>
 	);
 };
+
+const transformer = state => {
+	return { assets: state.gamestate.get('assets') };
+};
+export const Assets = RR.connect(transformer)(AssetsContainer);

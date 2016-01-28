@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var RBS = require('react-bootstrap');
+var RR = require('react-redux');
 
 var Actions = require('../Actions/actions.js');
 
@@ -15,14 +16,14 @@ const Resource = props => {
 	);
 };
 
-export const ResourcesRenderer = props => {
-	const { dispatch, gamestate } = props;
+const ResourcesContainer = props => {
+	const { dispatch, resources } = props;
 
 	return (
 		<div className="es-resources">
 			<h3>Resources <small>shining, shimmering, splendid</small></h3>
 			{
-				gamestate.get('resources').entrySeq().map(
+				resources.entrySeq().map(
 					entry => <Resource key={entry[0]} name={entry[0]} qty={entry[1]} />
 				).toJS()
 			}
@@ -30,3 +31,8 @@ export const ResourcesRenderer = props => {
 		</div>
 	);
 };
+
+let transformer = state => {
+	return { resources: state.gamestate.get('resources') };
+};
+export const Resources = RR.connect(transformer)(ResourcesContainer);
