@@ -48,25 +48,23 @@ export const GameDefinition = Immutable.fromJS({
 			}
 		},
 	},
+
+	upgrades: {
+
+	},
+
+	achievements: {
+
+	},
 });
 
 export const StartingGamestate = Immutable.fromJS({
 	actionId: 0,
 	gametime: 0,
-	resources: {
-		lumens: 0,
-		shadows: 0,
-	},
-	assets: {
-		candles: 0,
-		nightcandles: 0,
-	},
-	upgrades: {
-
-	},
-	achievements: {
-
-	},
+	resources: GameDefinition.get('resources').map(_ => 0),
+	assets: GameDefinition.get('assets').map(_ => 0),
+	upgrades: GameDefinition.get('upgrades').map(_ => 0),
+	achievements: GameDefinition.get('achievements').map(_ => false),
 	messages: [],
 });
 
