@@ -7,25 +7,27 @@
     "babel": "^6.3.26",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
-    "babel-preset-react": "^6.3.13",
-    "parse": "^1.7.0",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "immutable": "^3.7.6",
-    "react": "^0.14.6",
-    "react-redux": "^4.0.6",
+    "parse": "^1.7.0",
     "parse-react": "^0.5.0",
-    "redux": "^3.0.6",
-    "react-dom": "^0.14.6",
+    "react": "^0.14.6",
     "react-bootstrap": "^0.28.2",
-    "reselect": "^2.0.2",
-    "webpack": "^1.12.12",
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.0.6",
+    "react-timer-mixin": "^0.13.3",
+    "redux": "^3.0.6",
     "redux-localstorage": "^0.4.0",
     "redux-thunk": "^1.0.3",
-    "react-timer-mixin": "^0.13.3"
+    "reselect": "^2.0.2",
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
+    "deploy": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",

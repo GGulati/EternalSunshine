@@ -7,11 +7,8 @@ Prereqs: node / npm
 Install all dependencies with:
 ```npm i```
 
-You'll also need webpack.
-Install it globally with:
-```npm i -g webpack```
-
 # Build & Run
-Run ```webpack``` to build
+Run ```npm run dev``` to run the webpack dev server, which continuously recompiles your code
+Use ```npm run deploy``` to create the optimized production scripts
 
 Open index.html in a browser
