@@ -1,0 +1,26 @@
+{
+  "name": "eternalsunshine",
+  "version": "1.0.0",
+  "description": "incremental clicker game",
+  "main": "index.js",
+  "dependencies": {
+    "immutable": "^3.7.6",
+    "parse": "^1.7.0",
+    "parse-react": "^0.5.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "redux": "^3.0.6",
+    "redux-localstorage": "^0.4.0",
+    "redux-thunk": "^1.0.3",
+    "reselect": "^2.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gurwinder Gulati",
+  "license": "MIT",
+  "bin": {
+    "eternalsunshine": "bundle.js"
+  }
+}
