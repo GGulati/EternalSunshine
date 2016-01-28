@@ -1,5 +1,5 @@
 # EternalSunshine
-Incremental clicker game / React+Redux+Sweetjs experiment
+Incremental clicker game / React+Redux experiment
 
 # Setup
 Prereqs: node / npm
