@@ -13,6 +13,6 @@ Install all dependencies with:
 # Build & Run
 Run ```npm run build``` to build the project.
 
-Use ```npm run deploy``` to create the optimized production version of the webpage. Note that the script goes to deploy/ and not bin/.
+Use ```npm run deploy``` to create the optimized production version of the webpage. (Note that the script goes to deploy/ and not bin/, so you might edit index.html to use the deploy version, for example).
 
 Then, open index.html in a browser.
