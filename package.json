@@ -27,7 +27,8 @@
   "devDependencies": {},
   "scripts": {
     "build": "webpack",
-    "deploy": "NODE_ENV=production webpack -p"
+    "deploy": "NODE_ENV=production webpack -p",
+    "win-deploy": "set NODE_ENV=production && webpack -p"
   },
   "repository": {
     "type": "git",
