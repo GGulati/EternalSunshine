@@ -4,7 +4,7 @@ var Redux = require('redux');
 import { Actions } from '../Actions/actions.js';
 var GameModel = require('../gameModel.js');
 
-const tick = (state, action) => {
+function tick(state, action) {
 	const updated = state.set('gametime', action.gametime);
 	var res = updated.get('resources');
 
@@ -27,7 +27,7 @@ const tick = (state, action) => {
 		);
 };
 
-const gatherResources = (state, action) => {
+function gatherResources(state, action) {
 	const updated = state.set('actionId', action.actionId);
 	var res = updated.get('resources');
 
@@ -37,12 +37,12 @@ const gatherResources = (state, action) => {
 	return updated.set('resources', res);
 };
 
-const buyAsset = (state, action) => {
+function buyAsset(state, action) {
 	const updated = state.set('actionId', action.actionId);
 	var res = updated.get('resources');
 	
 	// check if we have enough resources
-	const cost = GameModel.GameDefinition.getIn(['assets', action.assetName, 'cost']);
+	const cost = GameModel.calcAssetCost(action.assetName, action.quantity);
 	const satisfies = cost.map((qty, resName) => res.get(resName) >= qty);
 
 	if (satisfies.every(x => !!x)) { // can afford
@@ -50,7 +50,7 @@ const buyAsset = (state, action) => {
 		
 		return updated
 			.set('resources', res)
-			.updateIn(['assets', action.assetName], x => x + 1);
+			.updateIn(['assets', action.assetName], x => x + action.quantity);
 	} else {
 		const displayName = GameModel.GameDefinition.getIn(['assets', action.assetName, 'name']);
 		const displaySuffix = GameModel.GameDefinition.getIn(['assets', action.assetName, 'suffix']);
@@ -78,20 +78,20 @@ const buyAsset = (state, action) => {
 	}
 }
 
-const sellAsset = (state, action) => {
+function sellAsset(state, action) {
 	const updated = state.set('actionId', action.actionId);
 	
 	// check that we have an asset of that type to sell
-	if (updated.getIn(['assets', action.assetName]) > 0) {
+	if (updated.getIn(['assets', action.assetName]) >= action.quantity) {
 		var res = updated.get('resources');
 
-		const cost = GameModel.GameDefinition.getIn(['assets', action.assetName, 'cost']);
+		const cost = GameModel.calcAssetCost(action.assetName, action.quantity);
 		const refunded = cost.map(x => Math.floor(x * GameModel.GameDefinition.get('asset_sell_ratio')));
 
 		res = res.mergeDeepWith((a, b) => a + b, refunded);
 		return updated
 			.set('resources', res)
-			.updateIn(['assets', action.assetName], x => x - 1);
+			.updateIn(['assets', action.assetName], x => x - action.quantity);
 	} else {
 		const displayName = GameModel.GameDefinition.getIn(['assets', action.assetName, 'name']);
 		const displaySuffix = GameModel.GameDefinition.getIn(['assets', action.assetName, 'suffix']);

@@ -19,19 +19,21 @@ export function gatherResources() {
 	};
 }
 
-export function buyAsset(assetName) {
+export function buyAsset(assetName, qty) {
 	return {
 		type: Actions.BUY_ASSET,
 		actionId: actionId++,
 		assetName: assetName,
+		quantity: qty,
 	};
 }
 
-export function sellAsset(assetName) {
+export function sellAsset(assetName, qty) {
 	return {
 		type: Actions.SELL_ASSET,
 		actionId: actionId++,
 		assetName: assetName,
+		quantity: qty,
 	};
 }
 

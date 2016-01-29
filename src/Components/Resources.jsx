@@ -23,7 +23,8 @@ const ResourcesContainer = props => {
 			<h3>Resources <small>shining, shimmering, splendid</small></h3>
 			{
 				resources.entrySeq().map(
-					entry => <Resource key={entry[0]} name={entry[0]} qty={entry[1]} />
+					([name, qty]) =>
+						<Resource key={name} name={name} qty={qty} />
 				).toJS()
 			}
 			<RBS.Button className="btn-raised" onClick={() => dispatch(Actions.gatherResources())}>Flicker</RBS.Button>

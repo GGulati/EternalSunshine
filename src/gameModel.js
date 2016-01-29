@@ -68,6 +68,14 @@ export const StartingGamestate = Immutable.fromJS({
 	messages: [],
 });
 
+export function calcAssetCost(name, qty) {
+	const baseCost = GameDefinition.getIn(['assets', name, 'cost']);
+
+	const est = baseCost.map(x => x * qty);
+
+	return est;
+}
+
 function replaceAll(str, context){
 	var context_match = context.mapKeys(k => '{' + k.toLowerCase() + '}');
   var re = new RegExp(context_match.keySeq().join("|"), "gi");
@@ -84,7 +92,7 @@ export const MessageType = {
 
 const MessageContent = Immutable.Map([
 	[MessageType.NEED_RES, "You cannot buy a {displayName} until you have {resourceDelta}"],
-	[MessageType.NEED_ASSET, "You do not have any {displayName}{displaySuffix} to sell"]
+	[MessageType.NEED_ASSET, "You do not have enough {displayName}{displaySuffix} to sell"]
 ]);
 
 const MessageStyle = Immutable.Map([
@@ -92,7 +100,7 @@ const MessageStyle = Immutable.Map([
 	[MessageType.NEED_ASSET, "danger"]
 ]);
 
-export const resourcesToString = (cost, adj=null) => {
+export function resourcesToString(cost, adj=null) {
 	const formatReqs = (qty, name) => {
 		const displayName = GameDefinition.getIn(['resources', name, 'name']);
 		const displaySuffix = GameDefinition.getIn(['resources', name, 'suffix']);
@@ -111,16 +119,18 @@ export const resourcesToString = (cost, adj=null) => {
 	}
 }
 
-const createMessage = (type, context, details, duration=5) => Immutable.Map({
-	type: type,
-	style: MessageStyle.get(type),
-	context: context,
-	details: details,
-	text: replaceAll(MessageContent.get(type), context.merge(details)),
-	duration: duration,
-});
+function createMessage(type, context, details, duration=5) {
+	return Immutable.Map({
+		type: type,
+		style: MessageStyle.get(type),
+		context: context,
+		details: details,
+		text: replaceAll(MessageContent.get(type), context.merge(details)),
+		duration: duration,
+	});
+}
 
-const isLastMessageSimilar = (messages, type, context) => {
+function isLastMessageSimilar(messages, type, context) {
 	if (messages.isEmpty()) {
 		return true;
 	}
@@ -131,9 +141,11 @@ const isLastMessageSimilar = (messages, type, context) => {
 	return sameType && sameContext;
 }
 
-export const tryAddMessage = (messages, type, context, details) => {
+export function tryAddMessage(messages, type, context, details) {
+	const newMessage = createMessage(type, context, details);
+
 	if (isLastMessageSimilar(messages, type, context)) {
-		messages = messages.pop(); // replace it with the "updated" message
+		return messages.pop().push(newMessage); // replace it with the "updated" message
 	}
-	return messages.push(createMessage(type, context, details));
+	return messages.push(newMessage);
 };
